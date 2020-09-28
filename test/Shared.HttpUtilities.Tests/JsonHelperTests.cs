@@ -2,6 +2,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 #endregion
 
 namespace Shared.HttpUtilities.Tests
@@ -104,6 +107,52 @@ namespace Shared.HttpUtilities.Tests
             Assert.IsNotNull(actual);
             Assert.IsTrue(actual.Length > 0);
         }
+
+
+        [TestMethod]
+        public async Task DeserializeTest()
+        {
+            // Arrange
+            string json = "{\"id\":1,\"name\":\"Test\"}";
+
+            // Act
+            Models.SampleObject actual = await JsonHelper.Deserialize<Models.SampleObject>(json);
+
+            // Assert
+            Assert.IsNotNull(actual);
+
+        }
+
+        [TestMethod]
+        public async Task DeserializeHttpResponseMessageTest()
+        {
+            // Arrange
+            HttpResponseMessage response = new HttpResponseMessage();            
+            response.Content = new StringContent("{\"id\":1,\"name\":\"Test\"}", Encoding.UTF8, "application/json");
+
+            // Act
+            string actual = await JsonHelper.Deserialize(response);
+
+            // Assert
+            Assert.IsNotNull(actual);
+
+        }
+        
+         [TestMethod]
+        public async Task DeserializeResponseTest()
+        {
+            // Arrange
+            HttpResponseMessage response = new HttpResponseMessage();
+            response.Content = new StringContent("{\"id\":1,\"name\":\"Test\"}", Encoding.UTF8, "application/json");
+
+            // Act
+            Models.SampleObject actual = await JsonHelper.DeserializeResponse<Models.SampleObject>(response);
+
+            // Assert
+            Assert.IsNotNull(actual);
+
+        }
+
 
     }
 }

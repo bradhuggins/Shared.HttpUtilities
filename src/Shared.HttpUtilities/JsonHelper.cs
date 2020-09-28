@@ -48,11 +48,22 @@ namespace Shared.HttpUtilities
             return JsonConvert.SerializeObject(item, settings);
         }
 
+        public static async Task<T> Deserialize<T>(string json, JsonSerializerSettings settings)
+        {
+            return JsonConvert.DeserializeObject<T>(json, settings);
+        }
+
+        public static async Task<T> Deserialize<T>(string json)
+        {
+            return await Deserialize<T>(json, new JsonSerializerSettings());
+        }
+
         public static async Task<string> Deserialize(HttpResponseMessage response)
         {
             string toReturn = await response.Content.ReadAsStringAsync();
             return toReturn;
         }
+
         public static async Task<T> DeserializeResponse<T>(HttpResponseMessage response)
         {
             return await DeserializeResponse<T>(response, new JsonSerializerSettings());
@@ -60,7 +71,7 @@ namespace Shared.HttpUtilities
         public static async Task<T> DeserializeResponse<T>(HttpResponseMessage response, JsonSerializerSettings settings)
         {
             string responsestring = await Deserialize(response);
-            return JsonConvert.DeserializeObject<T>(responsestring, settings);
+            return await Deserialize<T>(responsestring, settings);
         }
 
     }
