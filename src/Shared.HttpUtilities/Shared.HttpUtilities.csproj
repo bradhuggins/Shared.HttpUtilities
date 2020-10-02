@@ -4,10 +4,30 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Brad Huggins</Authors>
     <AssemblyVersion>0.1.0.0</AssemblyVersion>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Copyright>2020</Copyright>
     <Description>Shared library containing HTTP related utilities</Description>
+    <RepositoryUrl>https://github.com/bradhuggins/Shared.HttpUtilities</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <PackageId>BradHuggins.Shared.HttpUtilities</PackageId>
+    <PackageProjectUrl>https://github.com/bradhuggins/Shared.HttpUtilities</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseFile></PackageLicenseFile>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="readme.txt" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Include="readme.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </Content>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
