@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Brad Huggins</Authors>
+    <Company>Brad Huggins</Company>
     <AssemblyVersion>0.1.0.0</AssemblyVersion>
     <Version>0.1.1</Version>
     <Copyright>2020</Copyright>
